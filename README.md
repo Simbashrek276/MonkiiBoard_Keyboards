@@ -14,7 +14,7 @@ MonkiiPad20 is the show off. A twenty key macropad with an OLED screen, two swit
 
 MonkiiPad3x3 is the tiny one. A nine key pad that works as a plain number pad until you hold one key to flip it into a macro mode full of arrows and editing shortcuts.
 
-![The MonkiiPad3x3 numbered one to nine in a pink printed case](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
+![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
 
 ## What is in each folder
 
