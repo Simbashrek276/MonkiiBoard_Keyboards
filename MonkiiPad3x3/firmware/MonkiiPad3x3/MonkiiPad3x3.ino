@@ -3,6 +3,7 @@
 const int colPins[3] = {4, 5, 6};
 const int rowPins[3] = {7, 8, 9};
 
+// I set off = numpad, on = arrows and shortcuts. Ts can be Toggled by holding key 1.
 bool macroMode = false;
 
 unsigned long pressStart = 0;
@@ -33,7 +34,7 @@ void loop() {
 
       if (digitalRead(colPins[c]) == LOW) {
 
-        // SPECIAL LOGIC FOR KEY 1
+        // key 1 does 2 jobs so i wait and see how long its held
         if (r == 0 && c == 0) {
 
           pressStart = millis();
@@ -50,13 +51,12 @@ void loop() {
             }
           }
 
-          // short press
+          // let go early so it was just a '1'
           Keyboard.write('1');
           delay(20);
           goto skipKey;
         }
 
-        // NORMAL MODE
         if (!macroMode) {
 
           char numbers[3][3] = {
@@ -68,7 +68,7 @@ void loop() {
           Keyboard.write(numbers[r][c]);
         }
 
-        // MACRO MODE
+        // macro mode, arrows in the middle and edit keys on the bottom row
         else {
 
           if (r == 0 && c == 1) Keyboard.write(KEY_UP_ARROW);
@@ -79,21 +79,21 @@ void loop() {
 
           else if (r == 1 && c == 2) Keyboard.write(KEY_RIGHT_ARROW);
 
-          else if (r == 2 && c == 0) {  // Ctrl+C
+          else if (r == 2 && c == 0) {  // undo
             Keyboard.press(KEY_LEFT_CTRL);
             Keyboard.press('z');
             delay(10);
             Keyboard.releaseAll();
           }
 
-          else if (r == 2 && c == 1) {  // Ctrl+V
+          else if (r == 2 && c == 1) {  // redo
             Keyboard.press(KEY_LEFT_CTRL);
             Keyboard.press('y');
             delay(10);
             Keyboard.releaseAll();
           }
 
-          else if (r == 2 && c == 2) {  // Delete
+          else if (r == 2 && c == 2) {
             Keyboard.write(KEY_DELETE);
           }
 
@@ -102,6 +102,7 @@ void loop() {
           }
         }
 
+        // sit here til its released, crude but it stops repeats
         while (digitalRead(colPins[c]) == LOW);
         delay(20);
 

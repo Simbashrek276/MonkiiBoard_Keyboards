@@ -3,45 +3,33 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-// ═══════════════════════════════════════════════════════
-//  OLED
-// ═══════════════════════════════════════════════════════
+// 128x64 oled, I put it on Wire1 and never wired the reset pin
 Adafruit_SSD1306 display(128, 64, &Wire1, -1);
 
-// ═══════════════════════════════════════════════════════
-//  MATRIX PINS
-// ═══════════════════════════════════════════════════════
+// my matrix pins, rows drive and cols read
 const int ROW_NUM = 4;
 const int COL_NUM = 6;
 const int rowPins[ROW_NUM] = {0, 1, 2, 3};
 const int colPins[COL_NUM] = {4, 10, 6, 7, 8, 9};
 
-// ═══════════════════════════════════════════════════════
-//  SPECIAL KEY CODES
-// ═══════════════════════════════════════════════════════
+// made up codes for the keys that arent normal ascii
 #define K_EMPTY  0x00
 #define K_FN     0xF1
 #define K_CTRL   0xF2
 #define K_DEL    0xF3
 
-// ═══════════════════════════════════════════════════════
-//  KEYMAPS [layer][row][col]
-//  Layer 0: SHORTCUTER (default boot layer)
-//    FN  = Row2,Col5 (H position)
-//    CTRL= Row3,Col5 (N position)
-//    DEL = Row0,Col3 (4 position)
-//  Layer 1: TYPIST
-//    Same FN/CTRL positions, everything else types normally
-// ═══════════════════════════════════════════════════════
+// keymap is [layer][row][col]. I kept FN and CTRL in the same spot on both
+// layers so my finger doesnt have to move. only real diff is row0 col3,
+// thats DEL on shortcuter and just a '4' on typist. boots on layer 0.
 const uint8_t keymap[2][ROW_NUM][COL_NUM] = {
-  // ── Layer 0: SHORTCUTER ──────────────────────────────
+  // shortcuter
   {
     { '1',   '2',  '3',  K_DEL,  K_EMPTY, K_EMPTY },
     { 'q',   'w',  'e',  'r',    K_EMPTY, K_EMPTY },
     { 'a',   's',  'd',  'f',    'g',     K_FN    },
     { 'z',   'x',  'c',  'v',    'b',     K_CTRL  },
   },
-  // ── Layer 1: TYPIST ──────────────────────────────────
+  // typist
   {
     { '1',   '2',  '3',  '4',    K_EMPTY, K_EMPTY },
     { 'q',   'w',  'e',  'r',    K_EMPTY, K_EMPTY },
@@ -50,33 +38,29 @@ const uint8_t keymap[2][ROW_NUM][COL_NUM] = {
   },
 };
 
-// ═══════════════════════════════════════════════════════
-//  STATE VARIABLES
-// ═══════════════════════════════════════════════════════
 int           currentLayer      = 0;
 char          lastKeyStr[8]     = "---";
 unsigned long lastActivityTime  = 0;
 bool          screensaverActive = false;
 bool          oledNeedsUpdate   = true;
 
-// FN hold
+// fnToggled is there so one long hold doesnt flip the layer over and over
 bool          fnHeld      = false;
 unsigned long fnHoldStart = 0;
 bool          fnToggled   = false;
 
-// Debounce
+// pressedKey remembers what each switch actually sent, otherwise switching
+// layers mid press releases the wrong key and it sticks down
 bool          keyState[ROW_NUM][COL_NUM];
 bool          lastRaw[ROW_NUM][COL_NUM];
 unsigned long debounceTimers[ROW_NUM][COL_NUM];
 uint8_t       pressedKey[ROW_NUM][COL_NUM];
 const unsigned long DEBOUNCE_MS = 20;
 
-// ═══════════════════════════════════════════════════════
-//  ROBO EYE STATE
-// ═══════════════════════════════════════════════════════
-float         eyePupilX        = 0.0f;   // current pupil X offset (-1 to 1)
+// screensaver eyes
+float         eyePupilX        = 0.0f;   // -1 is left, 1 is right
 float         eyePupilTargetX  = 0.0f;
-float         eyeOpenH         = 1.0f;   // 1.0 = fully open, 0.0 = closed
+float         eyeOpenH         = 1.0f;   // 1 open, 0 shut
 float         eyeOpenTarget    = 1.0f;
 int           eyeSeqIdx        = 0;
 unsigned long lastEyeStateTime = 0;
@@ -86,22 +70,18 @@ const unsigned long IDLE_TIMEOUT  = 5000;
 const unsigned long EYE_STATE_DUR = 700;
 const unsigned long EYE_DRAW_INTV = 33;  // ~30fps
 
-// Animation sequence: pupil position, blink?
+// looks ahead, left, ahead, right, ahead, then blinks. loops forever
 const float eyePupilSeq[] = { 0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 0.0f };
 const bool  eyeBlinkSeq[] = { false, false, false, false, false, true };
 const int   EYE_SEQ_LEN   = 6;
 
-// ═══════════════════════════════════════════════════════
-//  ROBO EYE DRAWING
-//  White rounded-rect eyes, black rounded-rect pupils
-//  Pupils glide left/right; eyes blink open/shut
-// ═══════════════════════════════════════════════════════
+// white rounded rects for the eyes, black ones on top for the pupils
 void drawRoboEyes(float pupilNorm, float openFactor) {
   display.clearDisplay();
 
   const int EYE_W      = 46;
   const int EYE_H_FULL = 42;
-  const int EYE_R      = 11;   // corner radius (gives robo roundness)
+  const int EYE_R      = 11;   // the roundness, 11 looked cutest
   const int LEFT_CX    = 32;
   const int RIGHT_CX   = 96;
   const int EYE_CY     = 34;
@@ -112,14 +92,13 @@ void drawRoboEyes(float pupilNorm, float openFactor) {
 
   int eyeH   = max(2, (int)(EYE_H_FULL * openFactor));
   int eyeTopY = EYE_CY - eyeH / 2;
-  int cr     = min(EYE_R, eyeH / 2);      // safe corner radius
+  int cr     = min(EYE_R, eyeH / 2);      // clamp or a squinting eye wont draw
   int pOff   = (int)(pupilNorm * MAX_MOVE);
 
-  // White eye bodies
   display.fillRoundRect(LEFT_CX  - EYE_W / 2, eyeTopY, EYE_W, eyeH, cr, SSD1306_WHITE);
   display.fillRoundRect(RIGHT_CX - EYE_W / 2, eyeTopY, EYE_W, eyeH, cr, SSD1306_WHITE);
 
-  // Black pupils (only when sufficiently open)
+  // hide the pupils mid blink, they just look like smudges
   if (openFactor > 0.25f) {
     int pH   = min(PUPIL_H_MX, eyeH - 10);
     int pTopY = EYE_CY - pH / 2;
@@ -132,9 +111,7 @@ void drawRoboEyes(float pupilNorm, float openFactor) {
   display.display();
 }
 
-// ═══════════════════════════════════════════════════════
-//  OLED LAYER SCREEN
-// ═══════════════════════════════════════════════════════
+// this is the default screen for the macropad
 void drawLayerScreen() {
   display.clearDisplay();
   display.setTextColor(SSD1306_WHITE);
@@ -157,12 +134,9 @@ void drawLayerScreen() {
   display.display();
 }
 
-// ═══════════════════════════════════════════════════════
-//  OLED UPDATE (non-blocking)
-// ═══════════════════════════════════════════════════════
+// runs every loop, no delays in here or typing feels laggy
 void updateOLED(unsigned long now) {
   if (screensaverActive) {
-    // Advance eye animation state every EYE_STATE_DUR ms
     if (now - lastEyeStateTime >= EYE_STATE_DUR) {
       lastEyeStateTime = now;
       eyeSeqIdx        = (eyeSeqIdx + 1) % EYE_SEQ_LEN;
@@ -170,7 +144,6 @@ void updateOLED(unsigned long now) {
       eyeOpenTarget    = eyeBlinkSeq[eyeSeqIdx] ? 0.0f : 1.0f;
     }
 
-    // Redraw at ~30fps with lerp for smooth motion
     if (now - lastEyeDrawTime >= EYE_DRAW_INTV) {
       lastEyeDrawTime = now;
 
@@ -178,7 +151,6 @@ void updateOLED(unsigned long now) {
       eyePupilX += (eyePupilTargetX - eyePupilX) * LERP;
       eyeOpenH  += (eyeOpenTarget   - eyeOpenH)  * LERP;
 
-      // Auto-reopen after blink completes
       if (eyeOpenTarget < 0.5f && eyeOpenH < 0.06f) {
         eyeOpenTarget = 1.0f;
       }
@@ -192,25 +164,19 @@ void updateOLED(unsigned long now) {
   }
 }
 
-// ═══════════════════════════════════════════════════════
-//  LAYER TOGGLE
-// ═══════════════════════════════════════════════════════
 void toggleLayer() {
-  Keyboard.releaseAll();            // release any held keys
+  Keyboard.releaseAll();            // let go of everything, the map is changing
   currentLayer      = (currentLayer == 0) ? 1 : 0;
   screensaverActive = false;
   lastActivityTime  = millis();
-  drawLayerScreen();                // instant OLED update
+  drawLayerScreen();
 }
 
-// ═══════════════════════════════════════════════════════
-//  KEY PRESS
-// ═══════════════════════════════════════════════════════
 void onKeyPress(int r, int c) {
   lastActivityTime = millis();
   pressedKey[r][c] = K_EMPTY;
 
-  // Wake screensaver — consume keypress, don't type
+  // first press after the eyes only wakes it, i dont want a random char typed
   if (screensaverActive) {
     screensaverActive = false;
     drawLayerScreen();
@@ -243,16 +209,14 @@ void onKeyPress(int r, int c) {
     return;
   }
 
-  // Regular ASCII
+  // everything else is just a normal char
   lastKeyStr[0] = (char)toupper(key);
   lastKeyStr[1] = '\0';
   Keyboard.press((char)key);
   oledNeedsUpdate = true;
 }
 
-// ═══════════════════════════════════════════════════════
-//  KEY RELEASE
-// ═══════════════════════════════════════════════════════
+// release what this switch sent on press, not what the layer says right now
 void onKeyRelease(int r, int c) {
   lastActivityTime = millis();
   uint8_t key      = pressedKey[r][c];
@@ -266,9 +230,6 @@ void onKeyRelease(int r, int c) {
   Keyboard.release((char)key);
 }
 
-// ═══════════════════════════════════════════════════════
-//  SETUP
-// ═══════════════════════════════════════════════════════
 void setup() {
   for (int r = 0; r < ROW_NUM; r++) {
     pinMode(rowPins[r], OUTPUT);
@@ -285,6 +246,7 @@ void setup() {
 
   Keyboard.begin();
 
+  // oled goes on Wire1 so it stays off my matrix pins
   Wire1.setSDA(14);
   Wire1.setSCL(15);
   Wire1.begin();
@@ -294,20 +256,18 @@ void setup() {
   drawLayerScreen();
 }
 
-// ═══════════════════════════════════════════════════════
-//  MAIN LOOP
-// ═══════════════════════════════════════════════════════
 void loop() {
   unsigned long now = millis();
 
-  // ── Matrix scan ──────────────────────────────────────
+  // scan one row at a time
   for (int r = 0; r < ROW_NUM; r++) {
     digitalWrite(rowPins[r], LOW);
-    delayMicroseconds(10);
+    delayMicroseconds(10);          // give the line a sec to settle
 
     for (int c = 0; c < COL_NUM; c++) {
       bool raw = (digitalRead(colPins[c]) == LOW);
 
+      // reset the timer every time it wobbles, only act once its held steady
       if (raw != lastRaw[r][c]) {
         debounceTimers[r][c] = now;
         lastRaw[r][c]        = raw;
@@ -325,13 +285,13 @@ void loop() {
     digitalWrite(rowPins[r], HIGH);
   }
 
-  // ── FN hold 1s → toggle layer ─────────────────────────
+  // hold FN for a sec to swap layers
   if (fnHeld && !fnToggled && (now - fnHoldStart) >= 1000) {
     toggleLayer();
     fnToggled = true;
   }
 
-  // ── Idle 5s → screensaver ────────────────────────────
+  // been idle a while so give the screen to the eyes
   if (!screensaverActive && (now - lastActivityTime) >= IDLE_TIMEOUT) {
     screensaverActive = true;
     eyeSeqIdx         = 0;
@@ -344,6 +304,5 @@ void loop() {
     drawRoboEyes(0.0f, 1.0f);
   }
 
-  // ── OLED update ──────────────────────────────────────
   updateOLED(now);
 }
