@@ -24,7 +24,7 @@ The twenty switch positions are laid out four rows by six columns and numbered S
 
 ## The controller
 
-Up in the corner is the footprint for the RP2040 board, a Pico or a Pico style Zero. I printed the pin names right onto the silkscreen, the power pins down one side as 5V, GND and 3V3, and the GPIO numbers running around the rest, so you can seat the controller and check your wiring against the board itself instead of digging out a pinout. There is also a small header broken out for the OLED so the screen has a clean place to land.
+Up in the corner is the footprint for the Waveshare RP2040-Zero. I printed the pin names right onto the silkscreen, the power pins down one side as 5V, GND and 3V3, and the GPIO numbers running around the rest, so you can seat the controller and check your wiring against the board itself instead of digging out a pinout. There is also a small header broken out for the OLED so the screen has a clean place to land.
 
 ![The controller footprint up close with the pin labels reading 5V, GND, 3V3 and the numbered GPIO pins printed on the board](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_3.jpg)
 

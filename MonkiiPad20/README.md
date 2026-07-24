@@ -6,7 +6,7 @@ A twenty key macropad with a bit of personality. It has an OLED screen, two swit
 
 ## The hardware
 
-This pad runs on an RP2040 board such as a Raspberry Pi Pico. The reason for that choice is the screen, since the code drives the OLED over the second I2C bus and that dual bus setup is an RP2040 feature.
+This pad runs on a Waveshare RP2040-Zero. The reason for that choice is the screen, since the code drives the OLED over the second I2C bus and that dual bus setup is an RP2040 feature. The board is small enough to tuck away neatly, which helps in a build this size.
 
 The switches form a matrix of four rows and six columns, with the rows on pins 0, 1, 2 and 3 and the columns on pins 4, 10, 6, 7, 8 and 9. Twenty of those matrix spots carry keys and the leftover spots stay empty. Every switch has its own diode, so the board reads presses cleanly and handles proper rollover when several keys go down together. Each key is debounced over twenty milliseconds so presses stay crisp.
 
