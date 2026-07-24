@@ -10,11 +10,27 @@ This pad runs on an RP2040 board such as a Raspberry Pi Pico. The reason for tha
 
 The switches form a matrix of four rows and six columns, with the rows on pins 0, 1, 2 and 3 and the columns on pins 4, 10, 6, 7, 8 and 9. Twenty of those matrix spots carry keys and the leftover spots stay empty. Every switch has its own diode, so the board reads presses cleanly and handles proper rollover when several keys go down together. Each key is debounced over twenty milliseconds so presses stay crisp.
 
-![Inside the MonkiiPad20 showing the RP2040 board, the OLED ribbon and a diode soldered to each switch](../Medias/MonkiiPad20/MonkiiPad_diode.jpg)
-
 The display is a 128 by 64 SSD1306 wired to the second I2C bus, with data on pin 14 and clock on pin 15.
 
-![Close look at the row and column wiring running between the switches](../Medias/MonkiiPad20/MonkiiPad_rows_columns.jpg)
+## Two ways to build it
+
+There are two roads to a finished MonkiiPad20, and neither one is more correct than the other. You can hand wire the whole thing, or you can order the PCB I designed and solder onto that. Same firmware, same layout, same result. Pick whichever suits your patience and your parts drawer.
+
+### Hand wiring
+
+The scrappy way, and the one I built first. Everything gets soldered point to point, with a diode bridged straight across the legs of each switch and thin wire tying the rows and columns together. The RP2040 and the OLED just get wired in and tucked at the top. It costs almost nothing and you can start tonight, but it is fiddly and the back is a bit of a jungle by the end, so take your time and keep every diode facing the same way.
+
+![Inside the hand wired MonkiiPad20 with a diode soldered across each switch and the RP2040 and OLED tucked at the top](../Medias/MonkiiPad20/MonkiiPad_diode.jpg)
+
+![The back of the hand wired build with the row and column wires running between the switches](../Medias/MonkiiPad20/MonkiiPad_rows_columns.jpg)
+
+### The PCB
+
+The tidy way. I laid out a board with a labelled spot for every switch, a diode footprint beside each one and a marked header for the controller and the screen, so there is no loose wire to trace and no guesswork about which pin goes where. You do have to wait for it to ship, but soldering it up is quick and the finished board is far cleaner. The files and full instructions live in the [PCB folder](PCB/), and if you just want to get one made, grab the `MonkiiPad20_PCB.zip` in there and hand that to a fab house as is.
+
+![The MonkiiPad20 PCB on a cutting mat with every switch pad labelled and the controller pin header down the side](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB.jpg)
+
+![The back of the PCB showing the diode footprints, each marked with a K for the cathode, and the controller pin map in the corner](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_2.jpg)
 
 ## Two layers
 
