@@ -1,18 +1,18 @@
 # MonkiiBoard Keyboards
 
-This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are three of them so far, and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it.
+Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are four of them so far (MonkiiBoard16's images will be coming out soon!), and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it.
 
 ## The boards
 
-MonkiiBoard39 is the full keyboard of the group. Thirty nine keys in a tidy ortholinear 40 percent layout, with sticky modifiers on the bottom row and a Windows key that pops the start menu on a double tap.
+MonkiiBoard39 is MonkiiBoard's second build. THis keyboard has thirty nine keys in a tidy ortholinear 40 percent layout, with sticky modifiers on the bottom row and a Windows key that pops the start menu on a double tap.
 
 ![The MonkiiBoard39 seen from an angle](Medias/MonkiiBoard39/MonkiiBoard39_angledview.jpg)
 
-MonkiiPad20 is the show off. A twenty key macropad with an OLED screen, two switchable layers and a set of animated robot eyes that appear when you walk away from it. It is also the only board here that uses diodes.
+MonkiiPad20 is our first keyboard with a OLED screen implemented. This macropad is a a twenty key macropad with an OLED screen, two switchable layers and a set of animated robot eyes that appear when you stop using it for a while (approximately 6 - 8 seconds). It is also the only board here that uses diodes (so far).
 
 ![The MonkiiPad20 with its robot eyes glowing on the OLED](Medias/MonkiiPad20/MonkiiPad20_diagonal_view.jpg)
 
-MonkiiPad3x3 is the tiny one. A nine key pad that works as a plain number pad until you hold one key to flip it into a macro mode full of arrows and editing shortcuts.
+MonkiiPad3x3 is the first keyboard that we made!! It's a nine key pad that works as a plain number pad until you hold one key (the key "1") to flip it into a macro mode full of arrows and editing shortcuts.
 
 ![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
 
