@@ -12,11 +12,19 @@ MonkiiPad20 is our first keyboard with a OLED screen implemented. This macropad 
 
 ![The MonkiiPad20 with its robot eyes glowing on the OLED](Medias/MonkiiPad20/MonkiiPad20_diagonal_view.jpg)
 
+For the MonkiiPad20, we've also made our earliest PCB version 1 for this very macropad (if you choose to go the PCB path instead of the handwiring path)! The image below taken is the PCB, where you can see a silkscreen of our logo, MonkiiBoard, on the front layer.
+
+![The MonkiiPad20's PCB top view](Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB.jpg)
+
+![The MonkiiPad20's PCB design on KiCad](Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_design1.png)
+
+![The MonkiiPad20's PCB assembled bottom view](Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled_bottom_view.jpg)
+
 MonkiiPad3x3 is the first keyboard that we made!! It's a nine key pad that works as a plain number pad until you hold one key (the key "1") to flip it into a macro mode full of arrows and editing shortcuts.
 
 ![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
 
-MonkiiPad16 is the newest one. Sixteen keys and a rotary encoder, so instead of a second board or a held down FN key you just spin the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
+MonkiiPad16 is our latest macropad, with a knob! This macropad has 16 keys and a rotary encoder, so instead of a second board or a held down FN key you just SPIN the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
 
 ![The MonkiiPad16 at an angle with the OLED lit up and the encoder knob beside it](Medias/MonkiiPad16/MonkiiPad16_angled_view.jpg)
 
