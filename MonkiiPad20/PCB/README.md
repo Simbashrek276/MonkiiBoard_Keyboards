@@ -33,3 +33,21 @@ Up in the corner is the footprint for the Waveshare RP2040-Zero. I printed the p
 Send the zip to whichever fab you like, the defaults are fine, two layers and 1.6 mm as above. When the boards land, solder the diodes first while the board is still flat and easy to work on, watching that K mark, then the switches, then the controller and the OLED header. After that you are ready to flash the firmware and drop it into the case.
 
 ![The board catching the light at an angle with the MonkiiBoard logo printed on the silkscreen](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_4.jpg)
+
+## What it looks like built
+
+Here is one I actually populated, every switch socketed and the OLED window sitting flush in the corner.
+
+![The assembled MonkiiPad20 PCB with every switch socket filled and the OLED window mounted at the top right](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled.jpg)
+
+A closer look at the diodes once they are actually soldered down instead of just sitting as a footprint. Every one bent flat and facing the same way, matching the K printed beside it.
+
+![Close up on a row of soldered diodes on the back of the assembled board, each one seated flat and facing the same direction](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled_diodes.jpg)
+
+The RP2040-Zero seated on its header, its own silkscreened pin labels lining up right against the ones printed on the board underneath.
+
+![The RP2040-Zero controller soldered onto the board, its own pin labels matching the ones printed on the board's silkscreen](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled_MCU.jpg)
+
+And the whole back once everything is in, controller and every diode soldered.
+
+![The back of the fully assembled board with the RP2040-Zero and every diode soldered in place](../../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled_bottom_view.jpg)

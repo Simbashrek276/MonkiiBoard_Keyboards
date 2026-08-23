@@ -1,6 +1,6 @@
 # MonkiiPad20
 
-A twenty key macropad with a bit of personality. It has an OLED screen, two switchable layers and a pair of animated robot eyes that wake up and look around when you step away. This is also the one board in the family that runs a diode under every switch, which gives it a clean matrix and lets you press keys together without any ghosting.
+Hi ! This is a twenty key macropad with a bit of personality. It has an OLED screen, two switchable layers and a pair of animated robot eyes that wake up and look around when you step away. This is also the one board in the family that runs a diode under every switch, which gives it a clean matrix and lets you press keys together without any ghosting.
 
 ![The MonkiiPad20 in a dark room with its robot eyes glowing blue on the OLED](../Medias/MonkiiPad20/MonkiiPad20_diagonal_view.jpg)
 
@@ -31,6 +31,10 @@ The tidy way. I laid out a board with a labelled spot for every switch, a diode 
 ![The MonkiiPad20 PCB on a cutting mat with every switch pad labelled and the controller pin header down the side](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB.jpg)
 
 ![The back of the PCB showing the diode footprints, each marked with a K for the cathode, and the controller pin map in the corner](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_2.jpg)
+
+And here is that same board fully populated, switches, diodes and the RP2040-Zero all soldered in! Again, more build photos and the full write up are in the [PCB folder](PCB/).
+
+![The MonkiiPad20 PCB fully assembled, every switch socketed and the RP2040-Zero soldered onto its header](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled.jpg)
 
 ## Two layers
 

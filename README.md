@@ -1,6 +1,6 @@
 # MonkiiBoard Keyboards
 
-Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are four of them so far (MonkiiBoard16's images will be coming out soon!), and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it.
+Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are four of them so far, and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it.
 
 ## The boards
 
@@ -15,6 +15,10 @@ MonkiiPad20 is our first keyboard with a OLED screen implemented. This macropad 
 MonkiiPad3x3 is the first keyboard that we made!! It's a nine key pad that works as a plain number pad until you hold one key (the key "1") to flip it into a macro mode full of arrows and editing shortcuts.
 
 ![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
+
+MonkiiPad16 is the newest one. Sixteen keys and a rotary encoder, so instead of a second board or a held down FN key you just spin the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
+
+![The MonkiiPad16 at an angle with the OLED lit up and the encoder knob beside it](Medias/MonkiiPad16/MonkiiPad16_angled_view.jpg)
 
 ## What is in each folder
 
