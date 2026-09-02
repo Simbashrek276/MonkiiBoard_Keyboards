@@ -36,6 +36,10 @@ And here is that same board fully populated, switches, diodes and the RP2040-Zer
 
 ![The MonkiiPad20 PCB fully assembled, every switch socketed and the RP2040-Zero soldered onto its header](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled.jpg)
 
+Before any of that got routed, it started life as a schematic, twenty switches each with their own diode wired into the matrix, along with the OLED header and the RP2040-Zero pinout. The [PCB folder](PCB/) has the full story of how it got from there to a finished board.
+
+![The KiCad schematic for the MonkiiPad20, twenty switches each with a diode wired into a 4x6 matrix, plus the OLED header and the RP2040-Zero pinout](../Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_schematics.png)
+
 ## Two layers
 
 ![Top down view of the MonkiiPad20 and its keys](../Medias/MonkiiPad20/MonkiiPad20_top_view.jpg)
