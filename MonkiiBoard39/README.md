@@ -6,9 +6,17 @@ The full keyboard of the family. Thirty nine keys packed into a tidy ortholinear
 
 ## How it is wired
 
-The switches sit in a grid of four rows and ten columns. The rows go to pins 2, 3, 4 and 5, and the columns go to pins 6, 7, 8, 9, A1, A0, 15, 14, 16 and 10. The firmware pulls one row low at a time and reads the columns through their internal pull up resistors, so a pressed key drags its column low and the scanner knows exactly which switch moved. There is a thirty millisecond debounce on every key so a single press only ever registers once.
+The switches sit in a grid of four rows and ten columns. The rows go to pins A3, A2, A1 and A0, and the columns go to pins 9, 8, 7, 6, 5, 4, 10, 16, 14 and 15. The firmware pulls one row low at a time and reads the columns through their internal pull up resistors, so a pressed key drags its column low and the scanner knows exactly which switch moved. There is a thirty millisecond debounce on every key so a single press only ever registers once.
 
 This board runs without diodes. That keeps the build cheap and simple, and it is perfectly happy for everyday typing where you are hitting one or two keys at a time. Press a bunch of keys at once that happen to line up in the grid and you can get the usual ghosting any diodeless board has, so it is not the board for mashing five keys together.
+
+## Two ways to build it
+
+You can hand wire the whole thing to the pins listed above, same as I did with the very first one, or you can order the PCB I designed for it and solder onto that instead. Both run the same firmware and land on the exact same pins, no diodes either way.
+
+![The schematic for the MonkiiBoard39, thirty nine switches wired into a four by ten matrix with no diodes, plus the Arduino Pro Micro pinout](../Medias/MonkiiBoard39/MonkiiBoard39_PCB/MonkiiBoard39_schematics.png)
+
+The full story of how that board came together, along with the files to get one made, lives in the [PCB folder](PCB/).
 
 ## The layout
 

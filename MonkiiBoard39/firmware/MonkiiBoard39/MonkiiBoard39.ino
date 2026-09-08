@@ -1,7 +1,7 @@
 #include <Keyboard.h>
 
-const int colPins[10] = {6, 7, 8, 9, A1, A0, 15, 14, 16, 10};
-const int rowPins[4]  = {2, 3, 4, 5};
+const int colPins[10] = {9, 8, 7, 6, 5, 4, 10, 16, 14, 15};
+const int rowPins[4]  = {A3, A2, A1, A0};
 
 bool keyState[4][10] = {false};
 unsigned long lastChangeTime[4][10] = {0};

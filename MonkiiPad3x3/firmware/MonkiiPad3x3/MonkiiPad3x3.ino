@@ -1,7 +1,7 @@
 #include <Keyboard.h>
 
-const int colPins[3] = {4, 5, 6};
-const int rowPins[3] = {7, 8, 9};
+const int colPins[3] = {5, 6, 7};
+const int rowPins[3] = {2, 3, 4};
 
 // I set off = numpad, on = arrows and shortcuts. Ts can be Toggled by holding key 1.
 bool macroMode = false;

@@ -6,9 +6,17 @@ The smallest board in the family, a nine key pad in a simple three by three grid
 
 ## How it is wired
 
-Nine switches sit in a grid of three rows and three columns. The columns go to pins 4, 5 and 6, and the rows go to pins 7, 8 and 9. Like the MonkiiBoard39 it runs without diodes, so it is built for tapping one key at a time rather than holding a fistful of them down together, which suits a little number pad just fine.
+Nine switches sit in a grid of three rows and three columns. The rows go to pins 2, 3 and 4, and the columns go to pins 5, 6 and 7. Like the MonkiiBoard39 it runs without diodes, so it is built for tapping one key at a time rather than holding a fistful of them down together, which suits a little number pad just fine.
 
 ![Inside the MonkiiPad3x3 showing the switches and hand wiring](../Medias/MonkiiPad3x3/MonkiiPad3x3_inside.jpg)
+
+## Two ways to build it
+
+You can hand wire it to the pins above like the original, or order the PCB I designed and solder onto that instead. Same firmware, same pins, no diodes either way.
+
+![The schematic for the MonkiiPad3x3, nine switches wired into a three by three matrix with no diodes, plus the Arduino Pro Micro pinout](../Medias/MonkiiPad3x3/MonkiiPad3x3_PCB/MonkiiPad3x3_PCB_schematics_zoomed_in.png)
+
+The design story and the files to get one made live in the [PCB folder](PCB/).
 
 ## Two pads in one
 
