@@ -8,6 +8,14 @@ MonkiiBoard39 is MonkiiBoard's second build. THis keyboard has thirty nine keys 
 
 ![The MonkiiBoard39 seen from an angle](Medias/MonkiiBoard39/MonkiiBoard39_angledview.jpg)
 
+MonkiiBoard39 has a PCB now too, no diodes on this one since the sticky modifiers never need more than one key held down at a time. The schematic below shows all thirty nine switches wired straight into the matrix, with the Pro Micro footprint sitting right in the middle of the board.
+
+![The MonkiiBoard39 PCB rendered in KiCad, thirty nine switches around the Pro Micro footprint](Medias/MonkiiBoard39/MonkiiBoard39_PCB/MonkiiBoard39_PCB_CAD_front.png)
+
+![The MonkiiBoard39 schematic, no diodes anywhere in the matrix](Medias/MonkiiBoard39/MonkiiBoard39_PCB/MonkiiBoard39_schematics.png)
+
+![The back of the MonkiiBoard39 PCB with the Pro Micro module actually seated on it](Medias/MonkiiBoard39/MonkiiBoard39_PCB/MonkiiBoard39_PCB_CAD_back_2.png)
+
 MonkiiPad20 is our first keyboard with a OLED screen implemented. This macropad is a a twenty key macropad with an OLED screen, two switchable layers and a set of animated robot eyes that appear when you stop using it for a while (approximately 6 - 8 seconds). It is also the only board here that uses diodes (so far).
 
 ![The MonkiiPad20 with its robot eyes glowing on the OLED](Medias/MonkiiPad20/MonkiiPad20_diagonal_view.jpg)
@@ -24,6 +32,12 @@ MonkiiPad3x3 is the first keyboard that we made!! It's a nine key pad that works
 
 ![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
 
+MonkiiPad3x3 got the same treatment, a little PCB with all nine switches and the Pro Micro packed onto one small board, diode free just like MonkiiBoard39.
+
+![The MonkiiPad3x3 PCB rendered in KiCad, nine switches around the Pro Micro footprint](Medias/MonkiiPad3x3/MonkiiPad3x3_PCB/MonkiiPad3x3_PCB_CAD_front.png)
+
+![The MonkiiPad3x3 schematic, nine switches wired into a three by three matrix with no diodes](Medias/MonkiiPad3x3/MonkiiPad3x3_PCB/MonkiiPad3x3_PCB_schematics_zoomed_in.png)
+
 MonkiiPad16 is our latest macropad, with a knob! This macropad has 16 keys and a rotary encoder, so instead of a second board or a held down FN key you just SPIN the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
 
 ![The MonkiiPad16 at an angle with the OLED lit up and the encoder knob beside it](Medias/MonkiiPad16/MonkiiPad16_angled_view.jpg)
@@ -35,6 +49,18 @@ Every folder is laid out the same way. There is a firmware folder with the Ardui
 ## A word on diodes
 
 Only MonkiiPad20 has a diode sitting under each switch, which is what gives it a clean matrix and proper rollover. The other two boards skip the diodes to keep the build simple and cheap, so they are at their happiest when you press one or two keys at a time. Worth knowing before you start soldering.
+
+## The PCBs at a glance
+
+Three of the four boards now have a PCB option alongside the hand wired build, all designed in KiCad as two layer boards. Here is how they compare.
+
+| Board | Keys | Matrix | Diodes | Controller | Board size |
+| --- | --- | --- | --- | --- | --- |
+| MonkiiBoard39 | 39 | 4 by 10 | No | Pro Micro (ATmega32U4) | 195 by 80 mm |
+| MonkiiPad20 | 20 | 4 by 6 | Yes | RP2040-Zero | 120 by 86 mm |
+| MonkiiPad3x3 | 9 | 3 by 3 | No | Pro Micro (ATmega32U4) | 57 by 57 mm |
+
+Each PCB folder has the full design story, the schematic, the gerbers to get one made, and the raw KiCad project if you want to tune or reroute your own version.
 
 ## Getting started
 
