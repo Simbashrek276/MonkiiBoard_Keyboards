@@ -46,6 +46,23 @@ MonkiiPad16 is our latest macropad, with a knob! This macropad has 16 keys and a
 
 Every folder is laid out the same way. There is a firmware folder with the Arduino sketch you flash onto the board, a case folder with the print ready STL plates you can drop straight into a slicer, and a readme that covers the wiring, the layout and whatever that particular board likes to do.
 
+## Hand wired or PCB
+
+Every board here except MonkiiPad16 can be built either hand wired or on its PCB, same firmware and the same layout either way. Hand wiring asks a bit more of you on the materials side, thin gauge wire to run the rows and columns, insulating tape to keep the joints from touching each other, and a steadier hand while you solder everything point to point. The PCB skips all of that since the rows and columns are already routed for you, so it comes down to seating the parts and soldering them to the footprint.
+
+| Needed for | Hand wired | PCB |
+| --- | --- | --- |
+| Soldering station | Yes | Yes |
+| Multimeter | Yes | Yes |
+| Solder | Yes | Yes |
+| Switches | Yes | Yes |
+| Controller board | Yes | Yes |
+| Thin wire | Yes | No |
+| Insulating tape | Yes | No |
+| The PCB itself | No | Yes |
+
+MonkiiPad20 is the only board that needs diodes either way, 1N4148s, one for every switch. MonkiiBoard39 and MonkiiPad3x3 skip them completely on both their hand wired and PCB builds.
+
 ## A word on diodes
 
 Only MonkiiPad20 has a diode sitting under each switch, which is what gives it a clean matrix and proper rollover. The other two boards skip the diodes to keep the build simple and cheap, so they are at their happiest when you press one or two keys at a time. Worth knowing before you start soldering.
