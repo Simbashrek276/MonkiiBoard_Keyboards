@@ -1,6 +1,6 @@
 # MonkiiBoard Keyboards
 
-Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are four of them so far, and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it.
+Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are four of them so far, and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it. Remember, for every build (aside from MonkiiPad16), there will be 2 build pathways you can take, which are either handwiring or PCB-based builds. For starters, I would recommend choosing the handwiring option for certain keyboard builds, as it would make it much more easier to debug and fix using a multimeter and other tools as well!
 
 ## The boards
 
@@ -48,7 +48,7 @@ Every folder is laid out the same way. There is a firmware folder with the Ardui
 
 ## Hand wired or PCB
 
-Every board here except MonkiiPad16 can be built either hand wired or on its PCB, same firmware and the same layout either way. Hand wiring asks a bit more of you on the materials side, thin gauge wire to run the rows and columns, insulating tape to keep the joints from touching each other, and a steadier hand while you solder everything point to point. The PCB skips all of that since the rows and columns are already routed for you, so it comes down to seating the parts and soldering them to the footprint.
+We designed every board here except MonkiiPad16 can be built either hand wired or on its PCB, same firmware and the same layout either way. Hand wiring asks a bit more of you on the materials side, thin gauge wire to run the rows and columns, insulating tape to keep the joints from touching each other, and a steadier hand while you solder everything point to point. The PCB skips all of that since the rows and columns are already routed for you, so it comes down to seating the parts and soldering them to the footprint.
 
 | Needed for | Hand wired | PCB |
 | --- | --- | --- |
@@ -61,7 +61,7 @@ Every board here except MonkiiPad16 can be built either hand wired or on its PCB
 | Insulating tape | Yes | No |
 | The PCB itself | No | Yes |
 
-MonkiiPad20 is the only board that needs diodes either way, 1N4148s, one for every switch. MonkiiBoard39 and MonkiiPad3x3 skip them completely on both their hand wired and PCB builds.
+MonkiiPad20 is the only board that needs diodes either way, 1N4148s, one for every switch. MonkiiBoard39 and MonkiiPad3x3 skip them completely on both their hand wired and PCB builds, and we code the MCUs to enable toggling keys for combinations like Ctrl+C and Ctrl+V instead of holding Ctrl and then press the other button.
 
 ## A word on diodes
 
