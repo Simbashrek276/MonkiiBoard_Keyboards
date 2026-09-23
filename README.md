@@ -11,6 +11,8 @@ MonkiiBoard58 is the newest and the most ambitious build here! This board packed
 
 ![The MonkiiBoard58 PCB rendered from the top, full grid with the OLED window and the encoder visible](Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_full_view_v2_mounting_holes.png)
 
+![The MonkiiBoard58 PCB rendered from the bottom with diodes (through hole), battery charge port (the white rising component, and the ESP32 S3 WROOM 1)](Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_bottom.png)
+
 ![MonkiiBoard58 PCB](Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_layout_full_view_v2.png)
 
 Up to this point, this board only exists as a PCB, no hand wired version, since it carries its own LiPo charger, voltage regulator and a MOSFET power gate for the OLED right alongside the switch matrix. The schematic and layout are finished and the gerbers are ready, but the boards have not gone off to a manufacturer yet, so this is the one board here that has not actually been built in real life.

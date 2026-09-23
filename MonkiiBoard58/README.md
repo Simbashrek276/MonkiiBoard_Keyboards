@@ -12,7 +12,9 @@ There are 58 switches fill a 5x12 (row x column) grid, with two positions given 
 
 ![The keyboard layout diagram showing every switch position across the grid, the OLED gap and the encoder](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_keyboard_layout.png)
 
-Three layers are planned for the firmware. The base layer is a standard qwerty layout, the second is navigation with the arrow keys, home, end and page up and down, and the third holds the function row and media controls. The encoder gets its own behavior per layer too, volume by default, scrolling on the navigation layer and brightness on the function layer, with a push to mute.
+*This is the pre-rendered keyboard layout before building. I decided to go with 2 spacebars, each 2u in length to suits people who are still used to the normal row staggered layout*
+
+We're planning to have three layers for the firmware. The base layer is a standard qwerty layout, the second is navigation with the arrow keys, home, end and page up and down, and the third holds the function row and media controls. The encoder gets its own behavior per layer too, volume by default, scrolling on the navigation layer and brightness on the function layer, with a push to mute.
 
 ## The schematics
 
@@ -20,19 +22,33 @@ I drew the matrix first, fifty eight switches each with their own 1N4148 diode, 
 
 ![The full schematic, every switch, diode, the ESP32 S3, the OLED header, the encoder and the power circuitry all in one sheet](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_full_view.png)
 
+*The board's full schematic*
+
 ![One switch and its diode zoomed in, cathode facing the row line the way the rest of the matrix is wired](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_switch_diode.png)
+
+*A single switch among the 58 others. As seen, each is paired with a diode to prevent ghosting*
 
 ![Just the switch and diode matrix on its own sheet, fifty eight of them across five rows and twelve columns](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_matrix_only.png)
 
+*The switches and diodes matrix*
+
 ![The ESP32 S3 WROOM 1 module schematic with its decoupling caps and the antenna keep out area marked](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_MCU.png)
 
+*The ESP32 S3 module, a decoupling cap next to every VCC pin and the antenna keep out area marked off.*
+
 ![The USB C receptacle and OLED header schematic, CC1 and CC2 each with their own pull down and the OLED on its four pin header](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_USBC_OLED.png)
+
+*USB C on one side with its own independent CC pull downs. The 4 pins on the top right corner are for the screen, which are for 0.91" OLED SSD1306 (its intake is SDA, SCL, VCC, and GND)*
 
 The power side got its own sheet since there was too much going on to squeeze in next to the matrix. Battery connector, power switch, the AMS1117 regulator and its capacitors all sit together here.
 
 ![The battery connector, slide power switch, AMS1117 LDO and its bypass capacitors](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_power_regulation.png)
 
+*Where the board actually gets its power from, the battery connector, the slide switch and the AMS1117 regulator with its capacitors.*
+
 ![The AO3401A power gate MOSFET, the EC11 encoder and the TP4056 charge circuit sharing one sheet](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_power_gate_encoder_charger.png)
+
+*The AO3401A that gates power to the OLED, the rotary encoder, and the TP4056 charge circuit all sharing the last sheet.*
 
 ## The parts before wiring
 
@@ -40,11 +56,19 @@ Before anything got soldered I laid every part out on the bench to check the foo
 
 ![Every component laid out before wiring and placing them onto the board](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_components.png)
 
+*Every part for this build laid out on the bench before a single one got soldered down.*
+
 ![A closer look at the same parts, zoomed in](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_components_zoomed.png)
+
+*The same layout zoomed in so the smaller SMD parts are actually readable.*
 
 ![The ESP32 S3 WROOM 1 module itself, the SMD part that runs the whole board](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_ESP32S3_component.png)
 
+*The ESP32 S3 WROOM 1 module by itself, the one part that everything else on this board answers to.*
+
 ![The USB C receptacle sitting unwired before it gets connected in](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_unwired_USBC.png)
+
+*The USB C receptacle sitting loose, not yet connected to anything.*
 
 ## The PCB editor, wired
 
@@ -52,19 +76,33 @@ The first pass at routing did not have a single mounting hole anywhere on the bo
 
 ![The routed PCB with GND fill turned on, no mounting holes yet in this version](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_layout_full_view.png)
 
+*The first routed version, GND fill turned on, and not a single mounting hole in sight.*
+
 ![The same layout with four mounting holes added in the corners](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_layout_full_view_v2.png)
+
+*The fixed version with four mounting holes added in the corners so this can actually be screwed into a case.*
 
 ![A closer look at the top center of the board where the ESP32 S3 module sits](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_layout_top_center.png)
 
+*Zoomed into the top center where the ESP32 S3 footprint and its traces sit.*
+
 ![The top right corner of the board around the USB C receptacle](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_layout_top_right_USBC.png)
+
+*The top right corner where the USB C receptacle and its traces are routed.*
 
 With the routing settled I went back through and wired up each section for real, checking every connection against the schematic as I went.
 
 ![The top center area wired up with the ESP32 S3 footprint in focus](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_wired_top_center_MCU.png)
 
+*The ESP32 S3 area after the real wiring pass, checked against the schematic connection by connection.*
+
 ![The top left corner wired up around the EC11 rotary encoder](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_wired_top_left_encoder.png)
 
+*The rotary encoder corner once its connections were wired in for real.*
+
 ![The top right corner wired up, no GND fill so the individual traces are easy to follow](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_wired_top_right.png)
+
+*The USB C corner with GND fill turned off so every individual trace is easy to follow.*
 
 ## The PCB, rendered
 
@@ -72,21 +110,39 @@ Once the routing was done I pulled it into KiCad's 3D viewer to see the actual b
 
 ![The finished PCB rendered from the top, full view](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_full_view.png)
 
+*The board rendered from directly above, from before the mounting holes were added.*
+
 ![The same top view after version two added the four mounting holes](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_full_view_v2_mounting_holes.png)
+
+*The same top down render after the four mounting holes went in, this is the current version.*
 
 ![The top of the board at a slanted angle](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_slanted.png)
 
+*The top of the board from an angle instead of straight on, easier to get a feel for the actual size.*
+
 ![A closer look at the rotary encoder from the top render](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_encoder.png)
+
+*A closer render of the rotary encoder corner.*
 
 ![The top right corner of the render around the USB C receptacle](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_top_USBC_area.png)
 
+*A closer render of the USB C receptacle corner.*
+
 ![The bottom face of the board rendered in full](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_bottom.png)
+
+*The underside of the board rendered in full.*
 
 ![The bottom face with the ESP32 S3 module in focus](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_bottom_MCU_focused.png)
 
+*The underside zoomed toward the ESP32 S3 module.*
+
 ![A second angle on the bottom face, still focused on the ESP32 S3 module](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_bottom_MCU_focused_2.png)
 
+*A second angle on the same area, still centered on the ESP32 S3 module.*
+
 ![The bottom face with the battery connector area highlighted in green, this is where the LiPo plugs in](../Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_PCB_render_bottom_battery_connector.png)
+
+*The underside with the battery connector area highlighted in green, this is where the LiPo plugs in.*
 
 ## The power system
 
@@ -97,7 +153,6 @@ This is the part that sets MonkiiBoard58 apart from the rest of the family. USB 
 | Charging | TP4056 | Charges the LiPo off USB C, current set by a 1.2 kilo ohm PROG resistor, up to one amp |
 | Regulation | AMS1117 3.3 | Takes the battery voltage and holds a steady 3.3 volt rail for everything else |
 | OLED gating | AO3401A | P channel MOSFET that cuts power to the OLED completely when the ESP32 S3 pulls the gate high |
-| Battery sensing | Resistor divider | 1 megaohm and 806 kiloohm divider scaling the 4.2 volt max battery voltage down into the ADC range |
 
 The OLED gate is the part I am proudest of. Instead of just dimming the screen in software, the ESP32 S3 can cut its power rail entirely after thirty seconds of no key presses, so there is zero standby draw from the display while the board sits idle.
 
@@ -132,7 +187,6 @@ All fifty eight switches get their own 1N4148 diode, cathode facing the row line
 | Encoder A | GPIO40 |
 | Encoder B | GPIO41 |
 | Encoder switch | GPIO42 |
-| Battery ADC | GPIO3 |
 
 ## The controller
 

@@ -65,7 +65,6 @@ This is the part that sets MonkiiBoard58 apart from the rest of the family. USB 
 | Charging | TP4056 | Charges the LiPo off USB C, current set by a 1.2 kilo ohm PROG resistor, up to one amp |
 | Regulation | AMS1117 3.3 | Takes the battery voltage and holds a steady 3.3 volt rail for everything else |
 | OLED gating | AO3401A | P channel MOSFET that cuts power to the OLED completely when the ESP32 S3 pulls the gate high |
-| Battery sensing | Resistor divider | 1 megaohm and 806 kiloohm divider scaling the 4.2 volt max battery voltage down into the ADC range |
 
 The OLED gate is the part I am proudest of. Instead of just dimming the screen in software, the ESP32 S3 can cut its power rail entirely after thirty seconds of no key presses, so there is zero standby draw from the display while the board sits idle.
 
@@ -100,7 +99,6 @@ All fifty eight switches sit in a five row by twelve column matrix, and unlike M
 | Encoder A | GPIO40 |
 | Encoder B | GPIO41 |
 | Encoder switch | GPIO42 |
-| Battery ADC | GPIO3 |
 
 ## The controller
 
