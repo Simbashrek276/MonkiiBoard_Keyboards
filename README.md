@@ -3,6 +3,8 @@
 Hi! This is the home for the MonkiiBoard keyboards, an open little family of boards you can build, flash and print yourself. There are five of them so far, and each one lives in its own folder with the Arduino code, a 3D printable case and a readme that walks you through it. Remember, for every build (aside from MonkiiPad16 and MonkiiBoard58), there will be 2 build pathways you can take, which are either handwiring or PCB-based builds. For starters, I would recommend choosing the handwiring option for certain keyboard builds, as it would make it much more easier to debug and fix using a multimeter and other tools as well!
 
 ## The boards
+
+### MonkiiBoard58
 MonkiiBoard58 is the newest and the most ambitious build here! This board packed fifty eight keys in a five by twelve ortholinear grid with a rotary encoder on the left, a ESP23 S3 WROOM U1 (Surface mounted component, not through hole) and no cable to the host at all since it runs wireless off a LiPo battery over Bluetooth (well of course we still have to charge the battery by pluggin the USB_C Receptacle in).
 
 ![MonkiiBoard58 layout only](Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_keyboard_layout.png)
@@ -15,6 +17,7 @@ Up to this point, this board only exists as a PCB, no hand wired version, since 
 
 ![The full schematic for MonkiiBoard58, matrix, ESP32 S3, OLED, encoder and the power section on one sheet](Medias/MonkiiBoard58/MonkiiBoard58_PCB/MonkiiBoard58_schematics_full_view.png)
 
+### MonkiiBoard39
 MonkiiBoard39 is MonkiiBoard's second build. THis keyboard has thirty nine keys in a tidy ortholinear 40 percent layout, with sticky modifiers on the bottom row and a Windows key that pops the start menu on a double tap.
 
 ![The MonkiiBoard39 seen from an angle](Medias/MonkiiBoard39/MonkiiBoard39_angledview.jpg)
@@ -23,6 +26,7 @@ MonkiiBoard39 has a PCB now too, no diodes on this one since the sticky modifier
 
 ![The MonkiiBoard39 PCB rendered in KiCad, thirty nine switches around the Pro Micro footprint](Medias/MonkiiBoard39/MonkiiBoard39_PCB/MonkiiBoard39_PCB_CAD_front.png)
 
+### MonkiiPad20
 MonkiiPad20 is our first keyboard with a OLED screen implemented. This macropad is a a twenty key macropad with an OLED screen, two switchable layers and a set of animated robot eyes that appear when you stop using it for a while (approximately 6 - 8 seconds). It is also the only board here that uses diodes (so far).
 
 ![The MonkiiPad20 with its robot eyes glowing on the OLED](Medias/MonkiiPad20/MonkiiPad20_diagonal_view.jpg)
@@ -35,6 +39,7 @@ For the MonkiiPad20, we've also made our earliest PCB version 1 for this very ma
 
 ![The MonkiiPad20's PCB assembled bottom view](Medias/MonkiiPad20/MonkiiPad20_PCB/MonkiiPad20_PCB_assembled_bottom_view.jpg)
 
+### MonkiiBoard3x3
 MonkiiPad3x3 is the first keyboard that we made!! It's a nine key pad that works as a plain number pad until you hold one key (the key "1") to flip it into a macro mode full of arrows and editing shortcuts.
 
 ![The MonkiiPad3x3 numbered one to nine](Medias/MonkiiPad3x3/MonkiiPad3x3_top_view.jpg)
@@ -45,7 +50,8 @@ MonkiiPad3x3 got the same treatment, a little PCB with all nine switches and the
 
 ![The MonkiiPad3x3 schematic, nine switches wired into a three by three matrix with no diodes](Medias/MonkiiPad3x3/MonkiiPad3x3_PCB/MonkiiPad3x3_PCB_schematics_zoomed_in.png)
 
-MonkiiPad16 is our latest macropad, with a knob! This macropad has 16 keys and a rotary encoder, so instead of a second board or a held down FN key you just SPIN the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
+### MonkiiPad16
+MonkiiPad16 is our upgraded macropad, with a knob! This macropad has 16 keys and a rotary encoder, so instead of a second board or a held down FN key you just SPIN the knob to pick a layer, a numpad by default and a page of editing shortcuts one turn away.
 
 ![The MonkiiPad16 at an angle with the OLED lit up and the encoder knob beside it](Medias/MonkiiPad16/MonkiiPad16_angled_view.jpg)
 
